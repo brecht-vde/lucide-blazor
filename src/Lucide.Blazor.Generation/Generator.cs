@@ -9,7 +9,7 @@ public class Generator : IIncrementalGenerator
 {
     public void Initialize(IncrementalGeneratorInitializationContext ctx)
     {
-        var files = ctx.AdditionalTextsProvider.Where(file => file.Path.EndsWith(".svg"));
+        var files = ctx.AdditionalTextsProvider.Where(file => file.Path?.EndsWith(".svg") == true);
 
         var iconsProvider = files.Select((file, cancel)
             => (
@@ -44,18 +44,12 @@ public class Generator : IIncrementalGenerator
         });
     }
 
-    private string Extract(string? name, string? value)
+    private string Extract(string name, string? value)
     {
-        if (string.IsNullOrWhiteSpace(name)) 
-            throw new ArgumentNullException(nameof(name), "The provided icon does not have a name.");
-
         if (string.IsNullOrWhiteSpace(value)) 
             throw new ArgumentNullException(nameof(value), $"The provided icon with name '{name}', does not have a valid value, please check the file contents.");
 
         var svg = XDocument.Parse(value);
-
-        if (svg is null) 
-            throw new NullReferenceException(nameof(svg));
 
         var elements = svg.Root.Descendants()
             .Select(element =>

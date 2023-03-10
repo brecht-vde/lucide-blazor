@@ -25,7 +25,7 @@ public class Icon : ComponentBase
         builder.AddAttribute(8, "stroke-linecap", StrokeLinecap);
         builder.AddAttribute(9, "stroke-linejoin", StrokeLinejoin);
 
-        if (Attributes?.Any() is true)
+        if (Attributes?.Any() == true)
         {
             builder.AddMultipleAttributes(10, Attributes);
         }

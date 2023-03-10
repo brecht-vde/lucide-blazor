@@ -1,11 +1,10 @@
 ﻿//HintName: IconSet.g.cs
-namespace Lucide.Blazor;
+namespace Lucide.Blazor.Data;
 
 public static class IconSet
 {
     public static IReadOnlyDictionary<string, string> Icons = new Dictionary<string, string>()
     {
-        { "test-icon", """<path></path>""" },
-
+        
     };
 }

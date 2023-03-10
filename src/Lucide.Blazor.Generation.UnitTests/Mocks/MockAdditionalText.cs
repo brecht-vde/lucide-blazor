@@ -4,23 +4,17 @@ using Microsoft.CodeAnalysis.Text;
 namespace Lucide.Blazor.Generation.UnitTests.Mocks;
 internal sealed class MockAdditionalText : AdditionalText
 {
-    private readonly string _path;
-    private readonly string _content;
+    private readonly string? _path;
+    private readonly string? _text;
 
-    public override string Path => _path;
+    public override string Path => _path!;
 
-    public MockAdditionalText(string? path, string? content)
+    public MockAdditionalText(string? path, string? text)
     {
-        if (string.IsNullOrWhiteSpace(path))
-            throw new ArgumentNullException(nameof(path));
-
-        if (string.IsNullOrWhiteSpace(content))
-            throw new ArgumentNullException(nameof(content));
-
         _path = path;
-        _content = content;
+        _text = text;
     }
 
     public override SourceText? GetText(CancellationToken cancellationToken = default)
-        => SourceText.From(_content);
+        => string.IsNullOrWhiteSpace(_text) ? null : SourceText.From(_text);
 }

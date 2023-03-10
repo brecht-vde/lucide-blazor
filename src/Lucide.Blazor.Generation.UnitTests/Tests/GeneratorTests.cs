@@ -14,13 +14,77 @@ public sealed class GeneratorTests
     );
 
     [Fact]
-    public Task VerifyGenerator()
+    internal Task VerifyGenerator()
     {
         // Arrange
         var generator = new Generator();
         var compilation = CSharpCompilation.Create(nameof(GeneratorTests));
         var driver = CSharpGeneratorDriver.Create(generator) as GeneratorDriver;
         driver = driver.AddAdditionalTexts(Icons);
+
+        // Act
+        driver = driver.RunGenerators(compilation);
+
+        // Assert
+        return Verify(driver);
+    }
+
+    private static readonly ImmutableArray<AdditionalText> NullValueIcons = ImmutableArray.Create
+    (
+        new MockAdditionalText("mock-icon.svg", null) as AdditionalText
+    );
+
+    [Fact]
+    internal void VerifyGenerator_ValueIsNull_Throws()
+    {
+        // Arrange
+        var generator = new Generator();
+        var compilation = CSharpCompilation.Create(nameof(GeneratorTests));
+        var driver = CSharpGeneratorDriver.Create(generator) as GeneratorDriver;
+        driver = driver.AddAdditionalTexts(NullValueIcons);
+
+        // Act
+        driver = driver.RunGenerators(compilation);
+
+        // Assert
+        var result = driver.GetRunResult().Results.Any(r => r.Exception != null && r.Exception is ArgumentNullException);
+        Assert.True(result);
+    }
+
+    private static readonly ImmutableArray<AdditionalText> NonSvg = ImmutableArray.Create
+    (
+        new MockAdditionalText("mock-file.txt", "mock-text") as AdditionalText
+    );
+
+    [Fact]
+    internal Task VerifyGenerator_NonSvg_ReturnsEmptyDictionary()
+    {
+        // Arrange
+        var generator = new Generator();
+        var compilation = CSharpCompilation.Create(nameof(GeneratorTests));
+        var driver = CSharpGeneratorDriver.Create(generator) as GeneratorDriver;
+        driver = driver.AddAdditionalTexts(NonSvg);
+
+        // Act
+        driver = driver.RunGenerators(compilation);
+
+        // Assert
+        return Verify(driver);
+    }
+
+    private static readonly ImmutableArray<AdditionalText> NullPath = ImmutableArray.Create
+    (
+        new MockAdditionalText(null, "mock-text") as AdditionalText
+    );
+
+    [Fact]
+    internal Task VerifyGenerator_NullPath_ReturnsEmptyDictionary()
+    {
+        // Arrange
+        var generator = new Generator();
+        var compilation = CSharpCompilation.Create(nameof(GeneratorTests));
+        var driver = CSharpGeneratorDriver.Create(generator) as GeneratorDriver;
+        driver = driver.AddAdditionalTexts(NullPath);
 
         // Act
         driver = driver.RunGenerators(compilation);

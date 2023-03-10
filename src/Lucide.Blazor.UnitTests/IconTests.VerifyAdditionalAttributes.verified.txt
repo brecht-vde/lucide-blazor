@@ -1,0 +1,17 @@
+﻿{
+  Instance: {
+    Name: accessibility,
+    Css: ,
+    Width: 24,
+    Height: 24,
+    ViewBox: 0 0 24 24,
+    Fill: none,
+    Stroke: currentColor,
+    StrokeWidth: 2,
+    StrokeLinecap: round,
+    StrokeLinejoin: round,
+    Attributes: {
+      custom-attribute: custom-attribute-value
+    }
+  }
+}

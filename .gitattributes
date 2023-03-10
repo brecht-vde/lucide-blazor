@@ -1,2 +1,3 @@
-[lucide/*]
-  linguist-vendored
+lucide/* linguist-vendored
+*.verified.html linguist-vendored
+*.verified.txt linguist-vendored

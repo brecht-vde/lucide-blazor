@@ -5,8 +5,8 @@ git config user.email "<>"
 CURRENT=$(git rev-parse HEAD:lucide)
 LATEST=$(git ls-remote --quiet https://github.com/lucide-icons/lucide.git HEAD | grep -o '^\S*')
 
-echo "current version: " + $CURRENT
-echo "latest version: " + $LATEST
+echo "current version: " $CURRENT
+echo "latest version: " $LATEST
 
 if [ "$CURRENT" != "$LATEST" ]; then
     echo "updating lucide to latest version."

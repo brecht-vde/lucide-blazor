@@ -45,7 +45,7 @@ jobs:
               owner: owner,
               repo: repo,
               state: "open",
-              head: `octocat:${BRANCH}`
+              head: BRANCH
             });
             
             console.log("TEST");

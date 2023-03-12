@@ -2,6 +2,8 @@
 #  schedule:
 #  - cron: "0 0 * * *"
 
+name: update lucide
+
 on:
   workflow_dispatch:
  

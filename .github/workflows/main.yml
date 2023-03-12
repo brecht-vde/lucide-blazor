@@ -22,7 +22,7 @@ jobs:
           export GITHUB_TOKEN=$GITHUB_TOKEN
           cd $PWD/scripts
           chmod +x update-lucide.sh
-          sh ./update-lucide.sh
+          ./update-lucide.sh
           
       - name: Create pull request from branch
         id: pull_request_script

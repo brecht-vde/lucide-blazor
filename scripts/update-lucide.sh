@@ -2,18 +2,15 @@
 git config user.name "lucide-blazor-actions"
 git config user.email "<>"
 
-cd ../lucide
+CURRENT=$(cd ../lucide && git rev-parse HEAD)
+LATEST=$(cd ../lucide && git ls-remote --quiet https://github.com/lucide-icons/lucide.git HEAD | grep -o '^\S*')
 
-CURRENT=$(git rev-parse HEAD)
-LATEST=$(git ls-remote --quiet https://github.com/lucide-icons/lucide.git HEAD | grep -o '^\S*')
-
-echo $LATEST
-echo $CURRENT
+echo "current version: " + $CURRENT
+echo "latest version: " + $LATEST
 
 if [ "$CURRENT" != "$LATEST" ]; then
-    echo "updating lucide."
+    echo "updating lucide to latest version."
     git submodule update
-    cd ../
     git add lucide/
     git commit -m "Updating lucide to $LATEST"
     git push origin main

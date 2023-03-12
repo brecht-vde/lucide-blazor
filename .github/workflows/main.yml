@@ -11,11 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
-        id: checkout-script
+        id: checkout_script
         uses: actions/checkout@v3
         
       - name: Execute update script
-        id: update-script
+        id: update_script
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -24,18 +24,20 @@ jobs:
           ./update-lucide.sh
           
       - name: Create pull request from branch
-        id: pull-request-script
+        id: pull_request_script
         uses: actions/github-script@v6
         env:
-          BRANCH: ${{ steps.update-script.outputs.* }}
+          BRANCH: ${{ steps.update_script.outputs.BRANCH }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with: 
           script: |
-            console.log($BRANCH)
+            const {BRANCH} = process.env;
+          
+            console.log(BRANCH)
             
             const title = "lucide-update";
             const body = "lucide-update";
-            const head = $BRANCH; // branch name from last step
+            const head = BRANCH;
             const base = "main";
             
             const { data: pr } = await github.pulls.create({

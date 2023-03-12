@@ -28,7 +28,7 @@ if [ "$CURRENT" != "$LATEST" ]; then
     git checkout -b $BRANCH
     git add ../lucide
     git commit -m "Updating lucide to $LATEST"
-    git push origin $BRANCH
+    git push $BRANCH
 
     echo "BRANCH=$BRANCH" >> $GITHUB_OUTPUT
 

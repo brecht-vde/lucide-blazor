@@ -3,6 +3,8 @@ on:
  
 jobs:
   update-lucide:
+    permissions:
+     contents: write
     name: update lucide submodule
     runs-on: ubuntu-latest
     steps:

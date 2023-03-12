@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 git config user.name "lucide-blazor-actions"
 git config user.email "<>"
 

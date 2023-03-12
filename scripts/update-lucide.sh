@@ -30,7 +30,7 @@ if [ "$CURRENT" != "$LATEST" ]; then
     git commit -m "Updating lucide to $LATEST"
     git push origin $BRANCH
 
-    echo $BRANCH >> $GITHUB_OUTPUT
+    echo "BRANCH=$BRANCH" >> $GITHUB_OUTPUT
 
     echo "Update completed."
 else

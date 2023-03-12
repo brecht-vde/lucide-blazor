@@ -34,15 +34,12 @@ jobs:
         with: 
           script: |
             const {BRANCH} = process.env;
-          
-            console.log(BRANCH)
-            
             const title = "lucide-update";
             const body = "lucide-update";
             const head = BRANCH;
             const base = "main";
             
-            const { data: pr } = await github.pulls.create({
+            const result = await github.rest.pulls.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
               title,
@@ -51,7 +48,7 @@ jobs:
               base
             });
             
-            console.log(`Created PR: ${pr.html_url}`);
+            console.log(`Created PR: ${result.html_url}`);
             
         
         

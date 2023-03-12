@@ -10,9 +10,7 @@ echo "latest version: " $LATEST
 
 if [ "$CURRENT" != "$LATEST" ]; then
     echo "1 updating lucide to latest version."
-    git submodule init
-    echo "1.a submodule initialized"
-    git submodule update
+    git submodule update --init --recursive --remote
     echo "2 " $(git status)  
     git add ../lucide
     echo "3 " $(git status)

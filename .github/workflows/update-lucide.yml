@@ -56,7 +56,7 @@ jobs:
               repo: repo,
               title: "Automated lucide update.",
               body: "Updating lucide to latest version",
-              head: BRANCH,
+              head: `octocat:${BRANCH}`,
               base: "main"
             });
             

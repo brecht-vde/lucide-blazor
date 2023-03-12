@@ -48,10 +48,8 @@ jobs:
               head: `octocat:${BRANCH}`
             });
             
-            if (pulls)
-            {
-              console.log(pulls);
-            }
+            console.log("TEST");
+            console.log(pulls);
             
             const result = await github.rest.pulls.create({
               owner: owner,

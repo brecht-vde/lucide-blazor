@@ -2,8 +2,8 @@
 git config user.name "lucide-blazor-actions"
 git config user.email "<>"
 
-CURRENT=$(cd ../lucide && git rev-parse HEAD)
-LATEST=$(cd ../lucide && git ls-remote --quiet https://github.com/lucide-icons/lucide.git HEAD | grep -o '^\S*')
+CURRENT=$(cd lucide && git rev-parse HEAD)
+LATEST=$(cd lucide && git ls-remote --quiet https://github.com/lucide-icons/lucide.git HEAD | grep -o '^\S*')
 
 echo "current version: " + $CURRENT
 echo "latest version: " + $LATEST

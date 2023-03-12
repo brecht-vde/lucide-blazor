@@ -35,21 +35,18 @@ jobs:
         with: 
           script: |
             const {BRANCH} = process.env;
-            const title = "lucide-update";
-            const body = "lucide-update";
-            const head = BRANCH;
-            const base = "main";
+            
+            if (!BRANCH)
+              return;
             
             const result = await github.rest.pulls.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title,
-              body,
-              head,
-              base
+              title: "Automated lucide update.",
+              body: "Updating lucide to latest version",
+              head: BRANCH,
+              base: "main"
             });
-            
-            console.log(`Created PR: ${result.html_url}`);
             
         
         

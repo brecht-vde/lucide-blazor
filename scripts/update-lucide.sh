@@ -1,4 +1,7 @@
 #!/bin/sh
+git config user.name "lucide-blazor-actions"
+git config user.email "<>"
+
 cd ../lucide
 
 CURRENT=$(git rev-parse HEAD)
@@ -8,7 +11,7 @@ echo $LATEST
 echo $CURRENT
 
 if [ "$CURRENT" != "$LATEST" ]; then
-     echo "updating lucide."
+    echo "updating lucide."
     git submodule update
     cd ../
     git add lucide/

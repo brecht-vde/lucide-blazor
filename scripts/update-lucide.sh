@@ -9,15 +9,25 @@ echo "current version: " $CURRENT
 echo "latest version: " $LATEST
 
 if [ "$CURRENT" != "$LATEST" ]; then
-    echo "1 updating lucide to latest version."
+    echo "Updating to latest version."
+
     git submodule update --init --recursive --remote
-    echo "2 " $(git status)  
+
+    STATUS=$(git status)  
+    
+    if [ "$STATUS" != *"modified: ../lucide"* ]; then
+        echo "No updates required."
+        exit 0
+    fi
+
+    BRANCH=lucide-update/$LATEST
+
+    git checkout -b $BRANCH
     git add ../lucide
-    echo "3 " $(git status)
     git commit -m "Updating lucide to $LATEST"
-    echo "4 " $(git status)
-    git push origin main
-    echo "updated lucide."
+    git push origin $BRANCH
+
+    echo "Update completed."
 else
-    echo "lucide is already up to date."
+    echo "No updates required."
 fi

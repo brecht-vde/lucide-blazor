@@ -1,0 +1,19 @@
+on:
+  workflow_dispatch:
+ 
+jobs:
+  update-lucide:
+    name: update lucide submodule
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        id: checkout_script
+        uses: actions/checkout@v3
+        
+      - name: Execute update script
+        id: update_script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git checkout -b lucide-test-branch
+          git push origin lucide-test-branch

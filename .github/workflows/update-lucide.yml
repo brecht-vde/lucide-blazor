@@ -35,13 +35,25 @@ jobs:
         with: 
           script: |
             const {BRANCH} = process.env;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
             
             if (!BRANCH)
               return;
+              
+            const pulls = await github.rest.pulls.list({
+              owner: owner,
+              repo: repo,
+              state: "open",
+              head: BRANCH
+            });
+            
+            if (pulls.length > 0) 
+              return;
             
             const result = await github.rest.pulls.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
+              owner: owner,
+              repo: repo,
               title: "Automated lucide update.",
               body: "Updating lucide to latest version",
               head: BRANCH,

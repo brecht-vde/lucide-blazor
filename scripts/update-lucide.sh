@@ -13,9 +13,12 @@ if [ "$CURRENT" != "$LATEST" ]; then
 
     git submodule update --init --recursive --remote
 
-    STATUS=$(git status)  
+    STATUS=$(git status) 
+    UPDATED="modified:   ../lucide" 
+
+    echo $STATUS >> file.txt
     
-    if [ "$STATUS" != *"modified: ../lucide"* ]; then
+    if [[ "$STATUS" != *"$UPDATED"* ]]; then
         echo "No updates required."
         exit 0
     fi
@@ -26,6 +29,8 @@ if [ "$CURRENT" != "$LATEST" ]; then
     git add ../lucide
     git commit -m "Updating lucide to $LATEST"
     git push origin $BRANCH
+
+    echo $BRANCH >> $GITHUB_OUTPUT
 
     echo "Update completed."
 else

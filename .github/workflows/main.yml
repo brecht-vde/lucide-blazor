@@ -8,6 +8,8 @@ on:
 jobs:
   update-lucide:
     name: update lucide submodule
+    permissions:
+     contents: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code

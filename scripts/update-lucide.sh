@@ -9,13 +9,13 @@ echo "current version: " $CURRENT
 echo "latest version: " $LATEST
 
 if [ "$CURRENT" != "$LATEST" ]; then
-    echo "updating lucide to latest version."
+    echo "1 updating lucide to latest version."
     git submodule update
-    echo $(git status)  
+    echo "2 " $(git status)  
     git add lucide/
-    echo $(git status)
+    echo "3 " $(git status)
     git commit -m "Updating lucide to $LATEST"
-    echo $(git status)
+    echo "4 " $(git status)
     git push origin main
     echo "updated lucide."
 else

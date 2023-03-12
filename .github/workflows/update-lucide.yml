@@ -45,7 +45,7 @@ jobs:
               owner: owner,
               repo: repo,
               state: "open",
-              head: BRANCH
+              head: `octocat:${BRANCH}`
             });
             
             if (pulls.length > 0) 
@@ -56,7 +56,7 @@ jobs:
               repo: repo,
               title: "Automated lucide update.",
               body: "Updating lucide to latest version",
-              head: `octocat:${BRANCH}`,
+              head: BRANCH,
               base: "main"
             });
             

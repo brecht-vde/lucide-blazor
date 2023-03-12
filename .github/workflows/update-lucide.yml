@@ -48,8 +48,11 @@ jobs:
               head: BRANCH
             });
             
-            console.log("TEST");
-            console.log(pulls);
+            if (pulls && pulls.data && pulls.data.length > 0)
+            {
+              console.log("Pull request already created.");
+              return;
+            }
             
             const result = await github.rest.pulls.create({
               owner: owner,
@@ -59,6 +62,4 @@ jobs:
               head: BRANCH,
               base: "main"
             });
-            
-        
         

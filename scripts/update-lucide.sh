@@ -15,8 +15,6 @@ if [ "$CURRENT" != "$LATEST" ]; then
 
     STATUS=$(git status) 
     UPDATED="modified:   ../lucide" 
-
-    echo $STATUS >> file.txt
     
     if [[ "$STATUS" != *"$UPDATED"* ]]; then
         echo "No updates required."
@@ -24,6 +22,12 @@ if [ "$CURRENT" != "$LATEST" ]; then
     fi
 
     BRANCH=lucide-update/$LATEST
+    EXISTS=$(git ls-remote --heads https://github.com/brecht-vde/lucide-blazor.git $BRANCH)
+
+    if [ ! -z "$EXISTS" ]; then
+        echo "A branch already exists for this update."
+        exit 0
+    fi
 
     git checkout -b $BRANCH
     git add ../lucide

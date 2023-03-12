@@ -12,7 +12,7 @@ if [ "$CURRENT" != "$LATEST" ]; then
     echo "1 updating lucide to latest version."
     git submodule update
     echo "2 " $(git status)  
-    git add lucide/
+    git add ../lucide
     echo "3 " $(git status)
     git commit -m "Updating lucide to $LATEST"
     echo "4 " $(git status)

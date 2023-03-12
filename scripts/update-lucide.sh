@@ -11,9 +11,11 @@ echo "latest version: " $LATEST
 if [ "$CURRENT" != "$LATEST" ]; then
     echo "updating lucide to latest version."
     git submodule update
-    git add ../lucide
+    echo $(git status)  
+    git add lucide/
     echo $(git status)
     git commit -m "Updating lucide to $LATEST"
+    echo $(git status)
     git push origin main
     echo "updated lucide."
 else

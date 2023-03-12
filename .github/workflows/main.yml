@@ -19,6 +19,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          export GITHUB_TOKEN=$GITHUB_TOKEN
           cd $PWD/scripts
           chmod +x update-lucide.sh
           ./update-lucide.sh

@@ -35,7 +35,6 @@ jobs:
       run: dotnet test --no-build --verbosity normal
     - name: Pack
       working-directory: src
-      run: |
-        export VERSION="$RELEASE_VERSION_MAJOR.$RELEASE_VERSION_MINOR.$RELEASE_VERSION_PATCH"
-        env
-        dotnet pack Lucide.Blazor/Lucide.Blazor.csproj --configuration Release --output $PWD/dist /p:Version=$VERSION
+      env:
+        VERSION: "${{ secrets.RELEASE_VERSION_MAJOR }}.${{ secets.RELEASE_VERSION_MINOR }}.${{ secrets.RELEASE_VERSION_PATCH }}"
+      run: dotnet pack Lucide.Blazor/Lucide.Blazor.csproj --configuration Release --output $PWD/dist /p:Version=$VERSION

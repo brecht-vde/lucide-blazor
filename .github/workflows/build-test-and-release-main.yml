@@ -59,6 +59,5 @@ jobs:
               owner: context.repo.owner,
               prerelease: false,
               repo: context.repo.repo,
-              tag_name: `v${process.env.VERSION}`,
-              make_latest: true
+              tag_name: `v${process.env.VERSION}`
             });

@@ -20,7 +20,7 @@ jobs:
     permissions:
       packages: write
       contents: read
-      repository-projects: write
+      deployments: write
     steps:
     - name: Checkout source
       uses: actions/checkout@v3

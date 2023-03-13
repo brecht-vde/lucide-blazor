@@ -37,4 +37,5 @@ jobs:
       working-directory: src
       run: |
         export VERSION="$RELEASE_VERSION_MAJOR.$RELEASE_VERSION_MINOR.$RELEASE_VERSION_PATCH"
+        env
         dotnet pack Lucide.Blazor/Lucide.Blazor.csproj --configuration Release --output $PWD/dist /p:Version=$VERSION

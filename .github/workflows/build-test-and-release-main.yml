@@ -61,14 +61,15 @@ jobs:
               tag_name: `v${process.env.VERSION}`
             });
     - name: Update Patch
-      uses: "actions/github-script@main"
+      uses: "actions/github-script@v6"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PATCH: ${{ secrets.RELEASE_VERSION_PATCH }}
       with:
         script: |
           const response = await github.rest.actions.createOrUpdateRepoSecret({
-            repository_id: context.repo.id,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
             secret_name: "RELEASE_VERSION_PATCH",
             encrypted_value: process.env.PATCH + 1
           });

@@ -10,6 +10,10 @@ on:
 #      - lucide
 #      - src
 
+env:
+  VERSION: "${{ vars.RELEASE_VERSION_MAJOR }}.${{ vars.RELEASE_VERSION_MINOR }}.${{ vars.RELEASE_VERSION_PATCH }}"
+  REPO: ${{ github.repository }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -35,6 +39,6 @@ jobs:
       run: dotnet test --no-build --verbosity normal
     - name: Pack
       working-directory: src
-      env:
-        VERSION: "${{ vars.RELEASE_VERSION_MAJOR }}.${{ vars.RELEASE_VERSION_MINOR }}.${{ vars.RELEASE_VERSION_PATCH }}"
       run: dotnet pack Lucide.Blazor/Lucide.Blazor.csproj --configuration Release --output $PWD/dist /p:Version=$VERSION
+    - name: Publish
+      run: dotnet nuget push $PWD/dist/Lucide.Blazor$VERSION.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/$REPO/index.json

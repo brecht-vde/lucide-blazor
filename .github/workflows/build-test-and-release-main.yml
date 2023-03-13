@@ -64,10 +64,11 @@ jobs:
       uses: "actions/github-script@main"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PATCH: ${{ secrets.RELEASE_VERSION_PATCH }}
       with:
         script: |
           const response = await github.rest.actions.createOrUpdateRepoSecret({
             repository_id: context.repo.id,
             secret_name: "RELEASE_VERSION_PATCH",
-            encrypted_value: context.secrets.RELEASE_VERSION_PATCH + 1
+            encrypted_value: process.env.PATCH + 1
           });

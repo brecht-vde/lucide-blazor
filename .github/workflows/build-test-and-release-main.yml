@@ -44,4 +44,4 @@ jobs:
       working-directory: src
       run: |
         ls
-        dotnet nuget push $PWD/dist/Lucide.Blazor.$VERSION.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/$REPO/index.json
+        dotnet nuget push Lucide.Blazor.$VERSION.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/$REPO/index.json

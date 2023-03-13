@@ -36,5 +36,5 @@ jobs:
     - name: Pack
       working-directory: src
       env:
-        VERSION: "${{ secrets.RELEASE_VERSION_MAJOR }}.${{ secets.RELEASE_VERSION_MINOR }}.${{ secrets.RELEASE_VERSION_PATCH }}"
+        VERSION: "${{ secrets.RELEASE_VERSION_MAJOR }}.${{ secrets.RELEASE_VERSION_MINOR }}.${{ secrets.RELEASE_VERSION_PATCH }}"
       run: dotnet pack Lucide.Blazor/Lucide.Blazor.csproj --configuration Release --output $PWD/dist /p:Version=$VERSION

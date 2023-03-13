@@ -11,7 +11,7 @@ on:
 #      - src
 
 env:
-  VERSION: "${{ vars.RELEASE_VERSION_MAJOR }}.${{ vars.RELEASE_VERSION_MINOR }}.${{ vars.RELEASE_VERSION_PATCH }}"
+  VERSION: "${{ vars.RELEASE_VERSION_MAJOR }}.${{ vars.RELEASE_VERSION_MINOR }}.${{ secrets.RELEASE_VERSION_PATCH }}"
   OWNER: ${{ github.repository_owner }}
 
 jobs:
@@ -66,8 +66,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         script: |
-          const response = await github.rest.actions.updateEnvironmentVariable({
+          const response = await github.rest.actions.createOrUpdateRepoSecret({
             repository_id: context.repo.id,
-            name: "RELEASE_VERSION_PATCH",
-            value: process.env.RELEASE_VERSION_PATCH + 1
+            secret_name: "RELEASE_VERSION_PATCH",
+            encrypted_value: context.secrets.RELEASE_VERSION_PATCH + 1
           });

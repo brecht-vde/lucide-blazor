@@ -39,6 +39,9 @@ jobs:
       run: dotnet test --no-build --verbosity normal
     - name: Pack
       working-directory: src
-      run: dotnet pack Lucide.Blazor/Lucide.Blazor.csproj --configuration Release --output $PWD/dist /p:Version=$VERSION
+      run: dotnet pack Lucide.Blazor/Lucide.Blazor.csproj --configuration Release --output $PWD /p:Version=$VERSION
     - name: Publish
-      run: dotnet nuget push $PWD/dist/Lucide.Blazor.$VERSION.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/$REPO/index.json
+      working-directory: dist
+      run: |
+        ls
+        dotnet nuget push $PWD/dist/Lucide.Blazor.$VERSION.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/$REPO/index.json

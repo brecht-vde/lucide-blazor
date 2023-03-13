@@ -11,7 +11,7 @@ on:
 #      - src
 
 env:
-  VERSION: "${{ vars.RELEASE_VERSION_MAJOR }}.${{ vars.RELEASE_VERSION_MINOR }}.${{ vars.RELEASE_VERSION_PATCH }}"
+  VERSION: "v${{ vars.RELEASE_VERSION_MAJOR }}.${{ vars.RELEASE_VERSION_MINOR }}.${{ vars.RELEASE_VERSION_PATCH }}"
   OWNER: ${{ github.repository_owner }}
 
 jobs:
@@ -45,6 +45,20 @@ jobs:
       run: dotnet pack Lucide.Blazor/Lucide.Blazor.csproj --configuration Release --output $PWD /p:Version=$VERSION
     - name: Publish
       working-directory: src
-      run: |
-        ls
-        dotnet nuget push Lucide.Blazor.$VERSION.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/$OWNER/index.json
+      run: dotnet nuget push Lucide.Blazor.$VERSION.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/$OWNER/index.json
+    - name: Release
+      uses: "actions/github-script@v6"
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        script: |
+          const response = await github.rest.repos.createRelease({
+              draft: false,
+              generate_release_notes: true,
+              name: process.env.VERSION,
+              owner: context.repo.owner,
+              prerelease: false,
+              repo: context.repo.repo,
+              tag_name: process.env.VERSION,
+              make_latest: true
+            });

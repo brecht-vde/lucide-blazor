@@ -12,7 +12,7 @@ on:
 
 env:
   VERSION: "${{ vars.RELEASE_VERSION_MAJOR }}.${{ vars.RELEASE_VERSION_MINOR }}.${{ vars.RELEASE_VERSION_PATCH }}"
-  REPO: ${{ github.repository }}
+  OWNER: ${{ github.repository_owner }}
 
 jobs:
   build:
@@ -44,4 +44,4 @@ jobs:
       working-directory: src
       run: |
         ls
-        dotnet nuget push Lucide.Blazor.$VERSION.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/$REPO/index.json
+        dotnet nuget push Lucide.Blazor.$VERSION.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/$OWNER/index.json

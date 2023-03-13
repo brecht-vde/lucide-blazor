@@ -11,7 +11,7 @@ on:
 #      - src
 
 env:
-  VERSION: "v${{ vars.RELEASE_VERSION_MAJOR }}.${{ vars.RELEASE_VERSION_MINOR }}.${{ vars.RELEASE_VERSION_PATCH }}"
+  VERSION: "${{ vars.RELEASE_VERSION_MAJOR }}.${{ vars.RELEASE_VERSION_MINOR }}.${{ vars.RELEASE_VERSION_PATCH }}"
   OWNER: ${{ github.repository_owner }}
 
 jobs:
@@ -55,10 +55,10 @@ jobs:
           const response = await github.rest.repos.createRelease({
               draft: false,
               generate_release_notes: true,
-              name: process.env.VERSION,
+              name: `v${process.env.VERSION}`,
               owner: context.repo.owner,
               prerelease: false,
               repo: context.repo.repo,
-              tag_name: process.env.VERSION,
+              tag_name: `v${process.env.VERSION}`,
               make_latest: true
             });

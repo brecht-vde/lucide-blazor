@@ -61,7 +61,7 @@ jobs:
               tag_name: `v${process.env.VERSION}`
             });
     - name: Update Patch
-      uses: "actions/github-script@v6"
+      uses: "actions/github-script@main"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:

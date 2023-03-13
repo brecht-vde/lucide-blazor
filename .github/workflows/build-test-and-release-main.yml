@@ -17,10 +17,9 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions: write-all
-      #packages: write
-      #contents: read
-      #deployments: write
+    permissions:
+      packages: write
+      contents: write
     steps:
     - name: Checkout source
       uses: actions/checkout@v3
@@ -61,3 +60,14 @@ jobs:
               repo: context.repo.repo,
               tag_name: `v${process.env.VERSION}`
             });
+    - name: Update Patch
+      uses: "actions/github-script@v6"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        script: |
+          const response = await github.rest.repos.updateEnvironmentVariable({
+            repository_id: context.repo.id,
+            name: "RELEASE_VERSION_PATCH",
+            value: process.env.RELEASE_VERSION_PATCH + 1
+          });

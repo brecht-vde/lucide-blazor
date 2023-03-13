@@ -41,7 +41,7 @@ jobs:
       working-directory: src
       run: dotnet pack Lucide.Blazor/Lucide.Blazor.csproj --configuration Release --output $PWD /p:Version=$VERSION
     - name: Publish
-      working-directory: dist
+      working-directory: src
       run: |
         ls
         dotnet nuget push $PWD/dist/Lucide.Blazor.$VERSION.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/$REPO/index.json

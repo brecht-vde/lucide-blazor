@@ -17,10 +17,10 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: read
-      deployments: write
+    permissions: write-all
+      #packages: write
+      #contents: read
+      #deployments: write
     steps:
     - name: Checkout source
       uses: actions/checkout@v3

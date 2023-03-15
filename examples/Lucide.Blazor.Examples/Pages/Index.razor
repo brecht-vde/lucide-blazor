@@ -1,0 +1,39 @@
+﻿@page "/"
+@using Lucide.Blazor.Components
+
+Basic usage:
+
+<!-- defaults -->
+<Icon Name="bug" />
+
+<!-- Change color -->
+<Icon Name="bug" Stroke="blue" />
+
+<!-- Change size -->
+<Icon Name="bug" Width="100" Height="100" />
+
+<!-- Set css classes -->
+<Icon Name="bug" Css="icon-style" />
+
+Advanced usage:
+
+<!-- Additional attributes -->
+<Icon Name="bug" Attributes=_custom />
+
+<!-- If for some reason you don't want to use defaults, you can adjust these properties as well, results may not be as desired -->
+<Icon Name="bug" ViewBox="10 10 50 50" Fill="green" StrokeLinecap="square" StrokeLinejoin="bevel" StrokeWidth="2" />
+
+@code {
+    private readonly IDictionary<string, object> _custom = new Dictionary<string, object>()
+    {
+        { "custom-attribute", "custom-value" }
+    };
+}
+
+<style>
+    .icon-style {
+        width: 100px;
+        height: 100px;
+        color: red;
+    }
+</style>

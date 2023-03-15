@@ -37,7 +37,7 @@ Import the following in your razor files:
 
 ### Apply css classes
 
-```
+```razor
 <Icon Name="bug" Css="icon-style" />
 ```
 

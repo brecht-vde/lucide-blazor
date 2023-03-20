@@ -7,6 +7,7 @@ on:
     paths: 
       - lucide
       - src
+  workflow_dispatch:
 
 env:
   VERSION: "${{ vars.RELEASE_VERSION_MAJOR }}.${{ vars.RELEASE_VERSION_MINOR }}.${{ github.run_number }}"

@@ -1,14 +1,12 @@
 # lucide-blazor
 
+⚠⚠⚠ Please be aware this project was merely meant for myself to discover how source generators in C# work. This repository is not maintained.
+
 [![build, test and release main branch](https://github.com/brecht-vde/lucide-blazor/actions/workflows/build-test-and-release-main.yml/badge.svg)](https://github.com/brecht-vde/lucide-blazor/actions/workflows/build-test-and-release-main.yml) 
 [![build and test pull requests](https://github.com/brecht-vde/lucide-blazor/actions/workflows/build-and-test-pull-requests.yml/badge.svg)](https://github.com/brecht-vde/lucide-blazor/actions/workflows/build-and-test-pull-requests.yml) 
 [![update lucide](https://github.com/brecht-vde/lucide-blazor/actions/workflows/update-lucide.yml/badge.svg)](https://github.com/brecht-vde/lucide-blazor/actions/workflows/update-lucide.yml)
 
 This is an unofficial Blazor adaption for the Lucide icon pack. For a list of available icons check https://lucide.dev/ or find them in the Lucide repository.
-
-## Preface
-
-Please be aware this project was merely meant for myself to discover how source generators in C# work. This repository is not maintained.
 
 ## Installation
 
